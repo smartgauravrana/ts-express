@@ -3,10 +3,11 @@ import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 import http from 'http';
 
-// import routes from './routes';
 import { AppRouter } from './AppRouter';
 
+// controllers import
 import './controllers/LoginController';
+import './controllers/RootController';
 
 const app = express();
 

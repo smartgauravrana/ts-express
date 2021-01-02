@@ -7,9 +7,10 @@ var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cookie_session_1 = __importDefault(require("cookie-session"));
 var http_1 = __importDefault(require("http"));
-// import routes from './routes';
 var AppRouter_1 = require("./AppRouter");
+// controllers import
 require("./controllers/LoginController");
+require("./controllers/RootController");
 var app = express_1.default();
 var port = process.env.PORT || 3000;
 var server = http_1.default.createServer(app);

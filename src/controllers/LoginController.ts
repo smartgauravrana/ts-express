@@ -6,17 +6,11 @@ function logger(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
-function logger2(req: Request, res: Response, next: NextFunction) {
-  console.log('2nd Logger Request was made');
-  next();
-}
-
 @controller('/auth')
 class LoginController {
   
   @get('/login')
   @use(logger)
-  @use(logger2)
   getLogin(req: Request, res: Response ) {
     res.send(`
     <form method="POST">
@@ -34,7 +28,6 @@ class LoginController {
   }
 
   @post('/login')
-  @use(logger2)
   @bodyValidator('email', 'password')
   postLogin(req: Request, res: Response) {
     const {email, password } = req.body;
@@ -44,5 +37,11 @@ class LoginController {
     } else {
       res.send('Invalid email or password');
     }
+  }
+
+  @get('/logout')
+  logout(req: Request, res: Response) {
+    req.session = undefined;
+    res.redirect('/');
   }
 }

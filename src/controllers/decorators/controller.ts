@@ -25,7 +25,6 @@ function bodyValidators(keys: string[]) {
 
 export function controller (pathPrefix: string) {
   return function(target: Function) {
-    console.log('target ', target.prototype)
     for(let key in target.prototype) {
       const routeHandler = target.prototype[key];
 

@@ -30,7 +30,6 @@ function bodyValidators(keys) {
 }
 function controller(pathPrefix) {
     return function (target) {
-        console.log('target ', target.prototype);
         for (var key in target.prototype) {
             var routeHandler = target.prototype[key];
             var path = Reflect.getMetadata(MetadataKeys_1.MetadataKeys.path, target.prototype, key);

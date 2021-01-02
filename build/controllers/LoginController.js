@@ -14,10 +14,6 @@ function logger(req, res, next) {
     console.log('Request was made');
     next();
 }
-function logger2(req, res, next) {
-    console.log('2nd Logger Request was made');
-    next();
-}
 var LoginController = /** @class */ (function () {
     function LoginController() {
     }
@@ -34,22 +30,30 @@ var LoginController = /** @class */ (function () {
             res.send('Invalid email or password');
         }
     };
+    LoginController.prototype.logout = function (req, res) {
+        req.session = undefined;
+        res.redirect('/');
+    };
     __decorate([
         decorators_1.get('/login'),
         decorators_1.use(logger),
-        decorators_1.use(logger2),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
     ], LoginController.prototype, "getLogin", null);
     __decorate([
         decorators_1.post('/login'),
-        decorators_1.use(logger2),
         decorators_1.bodyValidator('email', 'password'),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
     ], LoginController.prototype, "postLogin", null);
+    __decorate([
+        decorators_1.get('/logout'),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object, Object]),
+        __metadata("design:returntype", void 0)
+    ], LoginController.prototype, "logout", null);
     LoginController = __decorate([
         decorators_1.controller('/auth')
     ], LoginController);
